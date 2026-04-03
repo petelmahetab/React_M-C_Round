@@ -13,7 +13,7 @@ function App() {
   const [editedUser, setEditedUser] = useState(null);
   const [isEditing, setIsEditing] = useState(false);
 
-  //Add User Logic
+ 
   const addUser = (user) => {
     if (editedUser && isEditing) {
       setUsers(prevUsers => prevUsers.map(u =>  
@@ -22,7 +22,7 @@ function App() {
       setEditedUser(null);
       setIsEditing(false);
     } else {
-      //only Creation of User
+    
       setUsers([...users, { id: Date.now(), ...user }]);
     }
   }
