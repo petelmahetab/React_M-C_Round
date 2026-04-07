@@ -13,16 +13,16 @@ function App() {
   const [editedUser, setEditedUser] = useState(null);
   const [isEditing, setIsEditing] = useState(false);
 
- 
+
   const addUser = (user) => {
     if (editedUser && isEditing) {
-      setUsers(prevUsers => prevUsers.map(u =>  
+      setUsers(prevUsers => prevUsers.map(u =>
         u.id === editedUser.id ? { ...u, ...user } : u
       ));
       setEditedUser(null);
       setIsEditing(false);
     } else {
-    
+
       setUsers([...users, { id: Date.now(), ...user }]);
     }
   }
@@ -34,14 +34,14 @@ function App() {
   }
 
   const cancelEdit = () => {
- setEditedUser(null);
- setIsEditing(false);
+    setEditedUser(null);
+    setIsEditing(false);
   }
   return (
     <>
       <h1>User Management</h1>
-      <FormInput onSubmit={addUser} isEditing={isEditing} editUser={editedUser} onCancel={cancelEdit}/>
-      <UserList users={users} onDelete={deleteUser} onEdit={editUser}/>
+      <FormInput onSubmit={addUser} isEditing={isEditing} editUser={editedUser} onCancel={cancelEdit} />
+      <UserList users={users} onDelete={deleteUser} onEdit={editUser} />
     </>
   )
 }

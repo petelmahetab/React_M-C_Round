@@ -5,7 +5,7 @@ const FormInput = ({ onSubmit, isEditing, editUser, onCancel }) => {
     const [userName, setUserName] = useState('')
     const [userEmail, setUserEmail] = useState('')
 
-    //UseEffect 
+    //UseEffect for 
     useEffect(() => {
         if (isEditing && editUser) {
             setUserName(editUser.name || '')
