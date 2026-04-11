@@ -4,38 +4,33 @@ import './App.css'
 function App() {
   const [query, setQuery] = useState('');
   const [result, setResult] = useState([]);
-  const [resultWithout, setWithoutDebounce] = useState([]); // ✅ FIXED: useState not useEffect
+  const [resultWithout, setWithoutDebounce] = useState([]); 
 
-  // ============================================
-  // ❌ WITHOUT DEBOUNCE: The Problem
-  // ============================================
+
   useEffect(() => {
     console.log('🌐 Fetching API Without Debounce:', query);
 
     if (!query) return;
     
-    fetch(`https://api.example.com/search?q=${query}`) // ✅ FIXED: removed space
+    fetch(`https://api.example.com/search?q=${query}`) 
       .then((d) => d.json())
       .then(setWithoutDebounce)
-      .catch(err => console.error('Error:', err)); // Added error handling
+      .catch(err => console.error('Error:', err));
       
   }, [query])
 
-  // ============================================
-  // ✅ WITH DEBOUNCE: The Solution
-  // ============================================
   useEffect(() => {
     const timer = setTimeout(() => {
-      if (!query) return; // ✅ Moved inside, early return
-      
+      if (!query) return;
+
       console.log('🌐 Fetching API with Debounce:', query);
       
-      fetch(`https://api.example.com/search?q=${query}`) // ✅ FIXED: removed space
+      fetch(`https://api.example.com/search?q=${query}`) 
         .then((d) => d.json())
         .then(setResult)
         .catch(err => console.error('Error:', err));
         
-      console.log('Execution completion!') // ✅ Only runs after fetch setup
+      console.log('Execution completion!') 
     }, 1000)
 
     return () => {
